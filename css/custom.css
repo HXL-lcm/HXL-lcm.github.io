@@ -1,0 +1,23 @@
+/* 整体页面透明 */
+.layout,
+#content-inner,
+#recent-posts,
+.post,
+.page,
+.card-widget {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 文章内容背景透明 */
+.post-content,
+.article-content {
+  background: transparent !important;
+}
+
+/* 去掉卡片圆角（可选） */
+.card-widget,
+.post,
+.page {
+  border-radius: 0 !important;
+}
