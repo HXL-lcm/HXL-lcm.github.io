@@ -1,8 +1,0 @@
-/* 消除顶部区域的底部空白 */
-.header-inner {
-  margin-bottom: 0 !important; /* 移除底部外边距 */
-}
-/* 若下方内容有顶部内边距，也可一并消除 */
-.content-wrap {
-  padding-top: 0 !important; /* 移除内容区顶部内边距 */
-}
