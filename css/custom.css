@@ -1,23 +1,27 @@
-/* 整体页面透明 */
-.layout,
-#content-inner,
-#recent-posts,
-.post,
-.page,
-.card-widget {
+/* ===== 核心：干掉页面主体白底 ===== */
+#body-wrap {
+  background: transparent !important;
+}
+
+/* 内容区域也透明 */
+#content-inner {
+  background: transparent !important;
+}
+
+/* 首页文章块 */
+.recent-post-item {
   background: transparent !important;
   box-shadow: none !important;
 }
 
-/* 文章内容背景透明 */
-.post-content,
-.article-content {
+/* 侧边栏 */
+#aside-content .card-widget {
   background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* 去掉卡片圆角（可选） */
-.card-widget,
-.post,
-.page {
-  border-radius: 0 !important;
+/* 亮 / 暗模式双杀 */
+[data-theme="light"] #body-wrap,
+[data-theme="dark"] #body-wrap {
+  background: transparent !important;
 }
