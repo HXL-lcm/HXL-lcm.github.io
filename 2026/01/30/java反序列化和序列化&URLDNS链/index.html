@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-01-30T08:11:16.000Z">
-<meta property="article:modified_time" content="2026-02-14T04:01:47.649Z">
+<meta property="article:modified_time" content="2026-02-14T04:43:10.855Z">
 <meta property="article:author" content="wea5e1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -326,8 +326,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-02-14 12:01:47</span>
-            <span class="mobile">2026-02-14 12:01:47</span>
+            <span class="desktop">2026-02-14 12:43:10</span>
+            <span class="mobile">2026-02-14 12:43:10</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -367,7 +367,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130134325801.png"
+                     data-src="/./../img/image-20260130134325801.png"
                       alt="image-20260130134325801"
                 ></p>
 <p>Serializable接口如下</p>
@@ -399,14 +399,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130140835310.png"
+                     data-src="/./../img/image-20260130140835310.png"
                       alt="image-20260130140835310"
                 ></p>
 <p>代码的逻辑非常简单，就是把Wea5e1去写入到user,ser文件里面，然后去通过反序列化去读取出来</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130141320674.png"
+                     data-src="/./../img/image-20260130141320674.png"
                       alt="image-20260130141320674"
                 ></p>
 <p>我们可以看到 整个大致的流程就是指把Java对象转换为字节序列的过程然后去通过反序列化把字节序列恢复为Java对象的过程。</p>
@@ -421,7 +421,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130143421020.png"
+                     data-src="/./../img/image-20260130143421020.png"
                       alt="image-20260130143421020"
                 ></p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;user.ser&quot;</span>);</span><br><span class="line">     <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(fis)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">User</span> <span class="variable">deserializedUser</span> <span class="operator">=</span> (User) ois.readObject(); <span class="comment">// 从字节流恢复对象</span></span><br><span class="line">    Runtime.getRuntime().exec(<span class="string">&quot;calc&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;反序列化出的用户名为: &quot;</span> + deserializedUser.name);</span><br></pre></td></tr></table></figure></div>
@@ -459,14 +459,14 @@
 <p>不过我们发现<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130154210150.png"
+                     data-src="/./../img/image-20260130154210150.png"
                       alt="image-20260130154210150"
                 ></p>
 <p>然后我们会去发现有两个，我们就会发现其实是序列化的自己去进行了DNS请求，而且反序列化并没有去执行</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130154445482.png"
+                     data-src="/./../img/image-20260130154445482.png"
                       alt="image-20260130154445482"
                 ></p>
 <p>问题在哪里呢</p>
@@ -487,7 +487,7 @@
 <h2 id="补充：反射"><a href="#补充：反射" class="headerlink" title="补充：反射"></a>补充：反射</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130160232114.png"
+                     data-src="/./../img/image-20260130160232114.png"
                       alt="image-20260130160232114"
                 ></p>
 <p>趁热打铁，抓紧时间去看看CC1链子了</p>
@@ -505,7 +505,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-02-14 12:01:47
+                    :</strong> 2026-02-14 12:43:10
             </li>
         
         <li>
