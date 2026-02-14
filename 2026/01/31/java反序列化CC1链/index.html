@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-01-30T16:05:25.000Z">
-<meta property="article:modified_time" content="2026-02-14T04:01:00.612Z">
+<meta property="article:modified_time" content="2026-02-14T04:39:48.548Z">
 <meta property="article:author" content="wea5e1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -275,7 +275,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -312,7 +312,7 @@
 				<div class="author flex items-center">
 					<span class="name text-default-text-color text-lg font-semibold">wea5e1</span>
 					
-					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
 					
 				</div>
 				<div class="meta-info">
@@ -326,8 +326,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-02-14 12:01</span>
-            <span class="mobile">2026-02-14 12:01</span>
+            <span class="desktop">2026-02-14 12:39:48</span>
+            <span class="mobile">2026-02-14 12:39:48</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -369,7 +369,7 @@
 <h2 id="链子分析"><a href="#链子分析" class="headerlink" title="链子分析"></a>链子分析</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130182701899.png"
+                     data-src="/./../img/image-20260130182701899.png"
                       alt="image-20260130182701899"
                 ></p>
 <p>是分为两个链子的</p>
@@ -378,7 +378,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130182835408.png"
+                     data-src="/./../img/image-20260130182835408.png"
                       alt="image-20260130182835408"
                 ></p>
 <p>首先去看Transformer 是一个接口，根据注释， transform() 方法是把输入的对象转换成某个输出对象，而且这</p>
@@ -386,7 +386,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130184317659.png"
+                     data-src="/./../img/image-20260130184317659.png"
                       alt="image-20260130184317659"
                 ></p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">transform</span><span class="params">(Object input)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (input == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Class</span> <span class="variable">cls</span> <span class="operator">=</span> input.getClass();</span><br><span class="line">            <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> cls.getMethod(iMethodName, iParamTypes);</span><br><span class="line">            <span class="keyword">return</span> method.invoke(input, iArgs);</span><br><span class="line">                </span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FunctorException</span>(<span class="string">&quot;InvokerTransformer: The method &#x27;&quot;</span> + iMethodName + <span class="string">&quot;&#x27; on &#x27;&quot;</span> + input.getClass() + <span class="string">&quot;&#x27; does not exist&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FunctorException</span>(<span class="string">&quot;InvokerTransformer: The method &#x27;&quot;</span> + iMethodName + <span class="string">&quot;&#x27; on &#x27;&quot;</span> + input.getClass() + <span class="string">&quot;&#x27; cannot be accessed&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FunctorException</span>(<span class="string">&quot;InvokerTransformer: The method &#x27;&quot;</span> + iMethodName + <span class="string">&quot;&#x27; on &#x27;&quot;</span> + input.getClass() + <span class="string">&quot;&#x27; threw an exception&quot;</span>, ex);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
@@ -412,7 +412,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130183217952.png"
+                     data-src="/./../../img/image-20260130183217952.png"
                       alt="image-20260130183217952"
                 ></p>
 <p>发现</p>
@@ -430,7 +430,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130190313431.png"
+                     data-src="/./../../img/image-20260130190313431.png"
                       alt="image-20260130190313431"
                 ></p>
 <p>发现这个其实是可以去走通的</p>
@@ -441,7 +441,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130191218415.png"
+                     data-src="/./../../img/image-20260130191218415.png"
                       alt="image-20260130191218415"
                 ></p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MapEntry</span> <span class="keyword">extends</span> <span class="title class_">AbstractMapEntryDecorator</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** The parent map */</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> AbstractInputCheckedMapDecorator parent;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">protected</span> <span class="title function_">MapEntry</span><span class="params">(Map.Entry entry, AbstractInputCheckedMapDecorator parent)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>(entry);</span><br><span class="line">            <span class="built_in">this</span>.parent = parent;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">setValue</span><span class="params">(Object value)</span> &#123;</span><br><span class="line">            value = parent.checkSetValue(value);</span><br><span class="line">            <span class="keyword">return</span> entry.setValue(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
@@ -452,14 +452,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130193350411.png"
+                     data-src="/./../img/image-20260130193350411.png"
                       alt="image-20260130193350411"
                 ></p>
 <p>那么接下来就是value的值可以去控制，然后就是去找readObject方法了，继续找哪里调用了setValue方法，保证调用的是AbstractMapEntryDecorator即可。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130193932539.png"
+                     data-src="/./../img/image-20260130193932539.png"
                       alt="image-20260130193932539"
                 ></p>
 <p>直接找到AbstractMapEntryDecorator-&gt; setValue</p>
@@ -483,7 +483,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130201959377.png"
+                     data-src="/./../img/image-20260130201959377.png"
                       alt="image-20260130201959377"
                 ></p>
 <p>发现是</p>
@@ -496,7 +496,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130212936705.png"
+                     data-src="/./../img/image-20260130212936705.png"
                       alt="image-20260130212936705"
                 ></p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ok，直接传Object o = declaredConstructor.newInstance(java.lang.annotation.Retention.class, decorate);</span><br></pre></td></tr></table></figure></div>
@@ -505,7 +505,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130212759321.png"
+                     data-src="/./../img/image-20260130212759321.png"
                       alt="image-20260130212759321"
                 ></p>
 <p>成功走到，POC如下</p>
@@ -514,7 +514,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130213153312.png"
+                     data-src="/./../img/image-20260130213153312.png"
                       alt="image-20260130213153312"
                 ></p>
 <p>所以最终的利用链是</p>
@@ -524,14 +524,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260131193842281.png"
+                     data-src="/./../img/image-20260131193842281.png"
                       alt="image-20260131193842281"
                 ></p>
 <p><code>LazyMap</code> 是利用其中的 <code>get</code> 方法中执行 <code>factory.transform</code> 其中 <code>LaZyMap</code> 的作用是” 懒加载”</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260130221508860.png"
+                     data-src="/./../img/image-20260130221508860.png"
                       alt="image-20260130221508860"
                 ></p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">get</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">        <span class="comment">// create value for key if key is not currently in the map</span></span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(key) == <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">value</span> <span class="operator">=</span> factory.transform(key);</span><br><span class="line">            map.put(key, value);</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(key);</span><br></pre></td></tr></table></figure></div>
@@ -555,7 +555,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./../../public/img/image-20260131194340431.png"
+                     data-src="/./../img/image-20260131194340431.png"
                       alt="image-20260131194340431"
                 ></p>
 <p>闹麻了，自己去撞口上面了</p>
@@ -590,7 +590,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-02-14 12:01:00
+                    :</strong> 2026-02-14 12:39:48
             </li>
         
         <li>
@@ -725,7 +725,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 8 篇文章
+                        共撰写了 7 篇文章
                     </span>
                     
                 </p>
